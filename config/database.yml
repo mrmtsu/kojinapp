@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: kojinapp_production
-  username: kojinapp
-  password: <%= ENV['KOJINAPP_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: unicode
+  pool: 5

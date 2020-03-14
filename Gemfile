@@ -41,6 +41,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'sqlite3'
 end
 
 group :development do
@@ -77,3 +78,7 @@ gem 'acts-as-taggable-on', '~> 6.0'
 gem "bootstrap-sass"
 gem 'ancestry'
 gem 'geocoder'
+
+group :production do
+  gem 'pg'
+end
