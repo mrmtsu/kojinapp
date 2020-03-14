@@ -1,0 +1,46 @@
+%h1 Users#show
+    %p
+      %span email:
+      = @user.email
+      = link_to "フォロー", follows_user_path(@user.id)
+      = link_to "フォロワー", followers_user_path(@user.id)
+      - if current_user != @user
+        - if @user.followed_by?(current_user)
+          %p
+          = link_to "フォロー済み", user_relationships_path(@user.id), method: :delete
+        - else
+          %p
+          = link_to "フォローする", user_relationships_path(@user.id), method: :post
+
+
+
+
+
+- @posts.each do |post|
+      %hr/
+      %p
+        %span ツイート内容:
+        = link_to post.text, post_path(post.id)
+    / 追加
+    - @favorite_posts.each do |post|
+      %hr/
+      %p
+        %span ファボツイート内容:
+        = link_to post.text, post_path(post.id)
+
+
+
+
+%h1 ユーザー詳細ページ
+    %h3
+    = @user.email
+    %h2 投稿内容
+    - @user.posts.each do |post|
+      //= link_to 
+      %hr
+    %h3 いいねしている投稿
+    - @user.favorite_posts.each do |post|
+      = post.user.email
+      = post.text
+    = link_to "ユーザー一覧へ", users_path
+    = link_to "ホームへ戻る", posts_path

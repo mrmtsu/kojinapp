@@ -1,0 +1,236 @@
+.wrapper
+  .header
+    .header__inner
+      .header__inner__logo
+        = link_to "CAMP", root_path, class: "header__inner__logos"
+    %ul.gnav
+      %li
+        = @category_children1
+        %a{href:""}ONLINE SHOP
+        //親
+        %ul.first
+          %li
+            - @parents.each do |parent|
+              %a{href:""}= parent.name
+              //子
+              %ul
+                %li
+                  - parent.children.each do |child|
+                    %a{href:""}=child.name
+                    //孫
+                    %ul
+                      %li
+                        - parent.children.each do |child|
+                          - child.children.each do |grandchild|
+                            %a{href:""}=grandchild.name
+              %ul
+                %li
+                  - parent.children.each do |child|
+                    %a{href:""}=child.name
+                    //孫
+                    %ul
+                      %li
+                        - parent.children.each do |child|
+                          - child.children.each do |grandchild|
+                            %a{href:""}=grandchild.name
+                      
+
+
+
+            
+      %li
+        %a{href:""}
+          NEWS
+        %ul.first
+          %li
+            %a{href:""}
+              Child1
+            %ul
+              %li
+                %a{href:""}
+                  Grandchild1
+                %ul
+                  %li
+                    %a{href:""}
+                      Greatgrandchild1
+                  %li
+                    %a{href:""}
+                      Greatgrandchild2
+                  %li
+                    %a{href:""}
+                      Greatgrandchild3
+              %li
+                %a{href:""}
+                  Grandchild2
+                %ul
+                  %li
+                    %a{href:""}
+                      Greatgrandchild1
+                  %li
+                    %a{href:""}
+                      Greatgrandchild2
+                  %li
+                    %a{href:""}
+                      Greatgrandchild3
+              %li
+                %a{href:""}
+                  Grandchild3
+              %li
+                %a{href:""}
+                  Grandchild4
+              %li
+                %a{href:""}
+                  Grandchild5
+      %li
+        %a{href:""}
+          Menu3
+        %ul.first
+          %li
+            %a{href:""}
+              Child1
+            %ul
+              %li
+                %a{href:""}
+                  Grandchild1
+                %ul
+                  %li
+                    %a{href:""}
+                      Greatgrandchild1
+                  %li
+                    %a{href:""}
+                      Greatgrandchild2
+                  %li
+                    %a{href:""}
+                      Greatgrandchild3
+              %li
+                %a{href:""}
+                  Grandchild2
+              %li
+                %a{href:""}
+                  Grandchild3
+              %li
+                %a{href:""}
+                  Grandchild4
+              %li
+                %a{href:""}
+                  Grandchild5
+      %li
+        %a{href:""}
+          Menu4
+        %ul.first
+          %li
+            %a{href:""}
+              Child1
+            %ul
+              %li
+                %a{href:""}
+                  Grandchild1
+                %ul
+                  %li
+                    %a{href:""}
+                      Greatgrandchild1
+                  %li
+                    %a{href:""}
+                      Greatgrandchild2
+                  %li
+                    %a{href:""}
+                      Greatgrandchild3
+              %li
+                %a{href:""}
+                  Grandchild2
+              %li
+                %a{href:""}
+                  Grandchild3
+              %li
+                %a{href:""}
+                  Grandchild4
+              %li
+                %a{href:""}
+                  Grandchild5
+      %li
+        %a{href:""}
+          Menu5
+        %ul.first
+          %li
+            %a{href:""}
+              Child1
+            %ul
+              %li
+                %a{href:""}
+                  Grandchild1
+                %ul
+                  %li
+                    %a{href:""}
+                      Greatgrandchild1
+                  %li
+                    %a{href:""}
+                      Greatgrandchild2
+                  %li
+                    %a{href:""}
+                      Greatgrandchild3
+              %li
+                %a{href:""}
+                  Grandchild2
+              %li
+                %a{href:""}
+                  Grandchild3
+              %li
+                %a{href:""}
+                  Grandchild4
+              %li
+                %a{href:""}
+                  Grandchild5
+            
+
+
+
+      .header__inner__right
+        - if user_signed_in?
+          .header__inner__right__post
+            = link_to new_post_path, class: "header__inner__right__post--btn" do
+              = icon('fas', 'plus-square')
+              .header__inner__right__post--btn
+                post
+          .header__inner__right__search
+            = link_to search_posts_path, class: "header__inner__right__search--btn" do
+              = icon('fas', 'search')
+              .header__inner__right__search--btn__name
+                Search
+          .header__inner__right__user
+            = link_to user_path(current_user.id), class: "header__inner__right__user--btn" do
+              = icon('fas', 'street-view')
+              .header__inner__right__user--btn__name
+                = current_user.name
+          .header__inner__right__logout
+            = link_to destroy_user_session_path, method: :delete, class: "header__inner__right__logout--btn" do
+              = icon('fas', 'user')
+              .header__inner__right__logout--btn__name
+                Logout
+        - else
+          .header__inner__right__login
+            = link_to new_user_session_path, class: "header__inner__right__login--btn" do
+              = icon('fas', 'user')
+              .header__inner__right__login--btn__name
+                Login
+          .header__inner__right__search
+            = link_to search_posts_path, class: "header__inner__right__search--btn" do
+              = icon('fas', 'search')
+              .header__inner__right__search--btn__name
+                Search
+
+
+  .content
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

@@ -1,0 +1,5 @@
+- @items.each do |item|
+  .content__item__image__list
+    %h1= image_tag item.image.to_s
+    %h1= item.name
+    %h1= item.price.to_s + '円（税別）'

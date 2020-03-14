@@ -1,0 +1,10 @@
+%h2 参加中のイベント
+- @bookmarks.each do |bookmark|
+  - post = Post.find(bookmark.post_id)
+  .name3= link_to post.post_name, post_path(post)
+  .name2= link_to "参加中のイベントから削除",bookmark_path(bookmark), method: :delete
+  .name2
+    = post.post_date.strftime("%Y-%m-%d %H:%M:%S")
+  .name2
+    = post.post_location
+  %br/

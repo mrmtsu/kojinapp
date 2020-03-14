@@ -1,0 +1,18 @@
+= form_for [@topic,@map] do |form|
+  - if @map.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@map.errors.count, "error")
+        prohibited this map from being saved:
+      %ul
+        - @map.errors.full_messages.each do |message|
+          %li= message
+  .field
+    - if @map.address == nil
+      = form.label :address
+      = form.text_field :address,:value => @topic
+    - else
+      = form.label :address
+      = form.text_field :address,:value => @map.address
+  .actions
+    = form.submit

@@ -1,0 +1,13 @@
+.content
+  - @posts.each do |post|
+    .content__post
+      = image_tag "#{post.image}"
+      .content__post__tags
+        / 4.gsub()で正規表現に合致する箇所を空欄にする
+        = simple_format(post.text.gsub!(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/, ""))
+        / 4.tweetにタグがあればタグを出力する
+        - if post.categories.any?
+          - post.categories.each do |category|
+            %p
+              \##{category.name}
+.footer
