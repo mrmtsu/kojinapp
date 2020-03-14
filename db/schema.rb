@@ -102,11 +102,14 @@ ActiveRecord::Schema.define(version: 2020_03_14_010147) do
     t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
 
-  create_table "post_hashtags", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "post_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "post_id"
-    t.integer "hashtag_id"
-    t.index ["hashtag_id"], name: "index_post_hashtags_on_hashtag_id"
-    t.index ["post_id"], name: "index_post_hashtags_on_post_id"
+    t.integer "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_post_categories_on_category_id"
+    t.index ["post_id", "category_id"], name: "index_post_categories_on_post_id_and_category_id", unique: true
+    t.index ["post_id"], name: "index_post_categories_on_post_id"
   end
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -127,25 +130,6 @@ ActiveRecord::Schema.define(version: 2020_03_14_010147) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "taggings", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "tag_id"
-    t.string "taggable_type"
-    t.integer "taggable_id"
-    t.string "tagger_type"
-    t.integer "tagger_id"
-    t.string "context", limit: 128
-    t.datetime "created_at"
-    t.index ["tag_id"], name: "index_taggings_on_tag_id"
-    t.index ["taggable_id", "taggable_type", "context"], name: "taggings_taggable_context_idx"
-  end
-
-  create_table "tags", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", collation: "utf8_bin"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["name"], name: "index_tags_on_name", unique: true
-  end
-
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", default: "", null: false
@@ -164,5 +148,4 @@ ActiveRecord::Schema.define(version: 2020_03_14_010147) do
   add_foreign_key "bookmarks", "posts"
   add_foreign_key "bookmarks", "users"
   add_foreign_key "posts", "users"
-  add_foreign_key "taggings", "tags"
 end

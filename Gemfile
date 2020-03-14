@@ -82,3 +82,12 @@ gem 'geocoder'
 group :production do
   gem 'pg'
 end
+
+def change
+    create_table :categories do |t|
+      t.string :name, null: false
+      t.string :ancestry
+      t.timestamps
+    end
+    add_index :categories, :ancestry
+  end
